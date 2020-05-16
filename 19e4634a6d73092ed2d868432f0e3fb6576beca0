@@ -1,0 +1,1 @@
+{"jobID":"7318a28b-7df0-7497-f0dc-4503b1549b24","spec":{"type":"policy","cause":{"Message":"","User":""},"spec":{"speedtest:deployment/speedtest":{"add":{"automated":"true"},"remove":{}}}},"result":null}
