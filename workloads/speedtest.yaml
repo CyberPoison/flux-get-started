@@ -42,7 +42,7 @@ spec:
         imagePullPolicy: Always
         name: speedtest
         ports:
-        - containerPort: 80
+        - containerPort: 443
           name: 80tcp01
           protocol: TCP
         resources: {}
