@@ -1,0 +1,1 @@
+{"jobID":"e6f800ab-995e-d182-7732-a539200f8ac1","spec":{"type":"policy","cause":{"Message":"","User":""},"spec":{"bazarr:deployment/bazarr":{"add":{},"remove":{"automated":"true"}}}},"result":null}
