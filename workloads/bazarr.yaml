@@ -6,6 +6,7 @@ metadata:
     deployment.kubernetes.io/revision: "2"
     field.cattle.io/creatorId: user-jsrd9
     field.cattle.io/publicEndpoints: '[{"nodeName":"c-bstp9:m-c6b36ffbca41","addresses":["195.201.196.53"],"port":6767,"protocol":"TCP","podName":"bazarr:bazarr-6db9f97bc-cgm8r","allNodes":false}]'
+    fluxcd.io/automated: 'true'
   creationTimestamp: "2020-05-16T15:41:11Z"
   generation: 5
   labels:
