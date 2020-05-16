@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -33,7 +34,7 @@ spec:
         cattle.io/timestamp: "2020-05-16T15:41:13Z"
         field.cattle.io/ports: '[[{"containerPort":6767,"dnsName":"bazarr-hostport","hostPort":6767,"kind":"HostPort","name":"6767tcp67670","protocol":"TCP","sourcePort":6767}]]'
         fluxcd.io/automated: "true"
-      creationTimestamp: null
+      creationTimestamp:
       labels:
         workload.user.cattle.io/workloadselector: deployment-bazarr-bazarr
     spec:
@@ -45,7 +46,7 @@ spec:
           value: "1000"
         - name: TZ
           value: Europe/London
-        image: linuxserver/bazarr:latest
+        image: linuxserver/bazarr:arm32v7-56f3eb38-ls20
         imagePullPolicy: Always
         name: bazarr
         ports:
