@@ -1,0 +1,1 @@
+{"jobID":"c12f5d56-f9cd-7d3c-0ba2-8ec31062383c","spec":{"type":"policy","cause":{"Message":"","User":""},"spec":{"bazarr:deployment/bazarr":{"add":{"automated":"true"},"remove":{}}}},"result":null}
