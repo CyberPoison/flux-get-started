@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    field.cattle.io/creatorId: user-jsrd9
+    field.cattle.io/publicEndpoints: '[{"addresses":["195.201.196.53"],"port":31151,"protocol":"TCP","serviceName":"speedtest:speedtest-nodeport","allNodes":true}]'
+  creationTimestamp: "2020-05-16T13:11:03Z"
+  generation: 2
+  labels:
+    cattle.io/creator: norman
+    workload.user.cattle.io/workloadselector: deployment-speedtest-speedtest
+  name: speedtest
+  namespace: speedtest
+  resourceVersion: "5191"
+  selfLink: /apis/apps/v1/namespaces/speedtest/deployments/speedtest
+  uid: ecbc6151-747b-4524-a892-cfdb7f76ea8f
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: deployment-speedtest-speedtest
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2020-05-16T13:11:05Z"
+        field.cattle.io/ports: '[[{"containerPort":80,"dnsName":"speedtest-nodeport","hostPort":0,"kind":"NodePort","name":"80tcp01","protocol":"TCP","sourcePort":0}]]'
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: deployment-speedtest-speedtest
+    spec:
+      containers:
+      - image: e7db/speedtest:latest
+        imagePullPolicy: Always
+        name: speedtest
+        ports:
+        - containerPort: 80
+          name: 80tcp01
+          protocol: TCP
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: {}
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2020-05-16T13:11:14Z"
+    lastUpdateTime: "2020-05-16T13:11:14Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2020-05-16T13:11:03Z"
+    lastUpdateTime: "2020-05-16T13:11:14Z"
+    message: ReplicaSet "speedtest-64db4554f9" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 2
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
