@@ -46,7 +46,7 @@ spec:
           value: "1000"
         - name: TZ
           value: Europe/London
-        image: linuxserver/bazarr:arm32v7-56f3eb38-ls20
+        image: linuxserver/bazarr:latest
         imagePullPolicy: Always
         name: bazarr
         ports:
