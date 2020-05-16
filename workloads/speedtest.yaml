@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -32,12 +33,12 @@ spec:
       annotations:
         cattle.io/timestamp: "2020-05-16T13:11:05Z"
         field.cattle.io/ports: '[[{"containerPort":80,"dnsName":"speedtest-nodeport","hostPort":0,"kind":"NodePort","name":"80tcp01","protocol":"TCP","sourcePort":0}]]'
-      creationTimestamp: null
+      creationTimestamp:
       labels:
         workload.user.cattle.io/workloadselector: deployment-speedtest-speedtest
     spec:
       containers:
-      - image: e7db/speedtest:latest
+      - image: e7db/speedtest:develop
         imagePullPolicy: Always
         name: speedtest
         ports:
