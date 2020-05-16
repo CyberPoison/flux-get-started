@@ -6,6 +6,7 @@ metadata:
     deployment.kubernetes.io/revision: "1"
     field.cattle.io/creatorId: user-jsrd9
     field.cattle.io/publicEndpoints: '[{"addresses":["195.201.196.53"],"port":31151,"protocol":"TCP","serviceName":"speedtest:speedtest-nodeport","allNodes":true}]'
+    fluxcd.io/automated: 'true'
   creationTimestamp: "2020-05-16T13:11:03Z"
   generation: 2
   labels:
