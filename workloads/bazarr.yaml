@@ -52,7 +52,7 @@ spec:
         ports:
         - containerPort: 6767
           hostPort: 6767
-          name: 6767tcp67670
+          name: 6767tcp6767
           protocol: TCP
         resources: {}
         securityContext:
