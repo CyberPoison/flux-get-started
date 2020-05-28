@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    field.cattle.io/creatorId: user-gj778
+    field.cattle.io/publicEndpoints: '[{"nodeName":"c-jcwbl:m-c6b36ffbca41","addresses":["195.201.196.53"],"port":9117,"protocol":"TCP","podName":"jackett:jackett-cfcd68bc-6xf8c","allNodes":false}]'
+  creationTimestamp: null
+  generation: 1
+  labels:
+    cattle.io/creator: norman
+    workload.user.cattle.io/workloadselector: deployment-jackett-jackett
+  name: jackett
+  selfLink: /apis/apps/v1/namespaces/jackett/deployments/jackett
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: deployment-jackett-jackett
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2020-05-27T21:55:55Z"
+        field.cattle.io/ports: '[[{"containerPort":9117,"dnsName":"jackett-hostport","hostPort":9117,"kind":"HostPort","name":"9117tcp91170","protocol":"TCP","sourcePort":9117}]]'
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: deployment-jackett-jackett
+    spec:
+      containers:
+      - env:
+        - name: PGID
+          value: "1000"
+        - name: PUID
+          value: "1000"
+        - name: TZ
+          value: Europe/London
+        image: linuxserver/jackett:latest
+        imagePullPolicy: Always
+        name: jackett
+        ports:
+        - containerPort: 9117
+          hostPort: 9117
+          name: 9117tcp91170
+          protocol: TCP
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: {}
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+        volumeMounts:
+        - mountPath: /config/Jackett
+          name: vol1
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - hostPath:
+          path: /opt/appdata/jackett
+          type: ""
+        name: vol1
+status: {}

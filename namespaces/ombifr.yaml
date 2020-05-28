@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    field.cattle.io/creatorId: user-gj778
+    field.cattle.io/publicEndpoints: '[{"addresses":["195.201.196.53"],"port":443,"protocol":"HTTPS","serviceName":"ombi:ingress-3c168a2da345398204a41bcbc5edb895","ingressName":"ombi:ombifr","hostname":"ombifr.blackdragon.tv","allNodes":true},{"addresses":["195.201.196.53"],"port":32020,"protocol":"TCP","serviceName":"ombi:ombifr-nodeport","allNodes":true}]'
+  creationTimestamp: null
+  generation: 1
+  labels:
+    cattle.io/creator: norman
+    workload.user.cattle.io/workloadselector: deployment-ombi-ombifr
+  name: ombifr
+  selfLink: /apis/apps/v1/namespaces/ombi/deployments/ombifr
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: deployment-ombi-ombifr
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2020-05-27T21:46:07Z"
+        field.cattle.io/ports: '[[{"containerPort":3579,"dnsName":"ombifr-nodeport","hostPort":0,"kind":"NodePort","name":"3579tcp01","protocol":"TCP","sourcePort":0}]]'
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: deployment-ombi-ombifr
+    spec:
+      containers:
+      - env:
+        - name: PGID
+          value: "1000"
+        - name: PUID
+          value: "1000"
+        - name: TZ
+          value: Europe/London
+        image: linuxserver/ombi:latest
+        imagePullPolicy: Always
+        name: ombifr
+        ports:
+        - containerPort: 3579
+          name: 3579tcp01
+          protocol: TCP
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: {}
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+        volumeMounts:
+        - mountPath: /config
+          name: vol1
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - hostPath:
+          path: /opt/appdata/ombi/
+          type: ""
+        name: vol1
+status: {}
