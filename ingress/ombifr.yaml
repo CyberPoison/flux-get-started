@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/creatorId: user-gj778
+    field.cattle.io/ingressState: '{"b21iaWZyL29tYmkvb21iaWZyLmJsYWNrZHJhZ29uLnR2Ly8zNTc5":"deployment:ombi:ombifr"}'
+    field.cattle.io/publicEndpoints: '[{"addresses":["195.201.196.53"],"port":443,"protocol":"HTTPS","serviceName":"ombi:ingress-3c168a2da345398204a41bcbc5edb895","ingressName":"ombi:ombifr","hostname":"ombifr.blackdragon.tv","allNodes":true}]'
+  creationTimestamp: null
+  generation: 1
+  labels:
+    cattle.io/creator: norman
+  name: ombifr
+  selfLink: /apis/extensions/v1beta1/namespaces/ombi/ingresses/ombifr
+spec:
+  rules:
+  - host: ombifr.blackdragon.tv
+    http:
+      paths:
+      - backend:
+          serviceName: ingress-3c168a2da345398204a41bcbc5edb895
+          servicePort: 3579
+  tls:
+  - hosts:
+    - ombifr.blackdragon.tv
+status:
+  loadBalancer: {}

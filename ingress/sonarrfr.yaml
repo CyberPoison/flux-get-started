@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/creatorId: user-gj778
+    field.cattle.io/ingressState: '{"c29uYXJyZnIvc29uYXJyL3NvbmFycmZyLmJsYWNrZHJhZ29uLnR2Ly84OTg5":"deployment:sonarr:sonarrfr"}'
+    field.cattle.io/publicEndpoints: '[{"addresses":["195.201.196.53"],"port":443,"protocol":"HTTPS","serviceName":"sonarr:ingress-f908a4dc0ac518c6011d7601abd57651","ingressName":"sonarr:sonarrfr","hostname":"sonarrfr.blackdragon.tv","allNodes":true}]'
+  creationTimestamp: null
+  generation: 1
+  labels:
+    cattle.io/creator: norman
+  name: sonarrfr
+  selfLink: /apis/extensions/v1beta1/namespaces/sonarr/ingresses/sonarrfr
+spec:
+  rules:
+  - host: sonarrfr.blackdragon.tv
+    http:
+      paths:
+      - backend:
+          serviceName: ingress-f908a4dc0ac518c6011d7601abd57651
+          servicePort: 8989
+  tls:
+  - hosts:
+    - sonarrfr.blackdragon.tv
+status:
+  loadBalancer: {}

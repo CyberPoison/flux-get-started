@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/creatorId: user-gj778
+    field.cattle.io/ingressState: '{"cmFkYXJyZnIvcmFkYXJyL3JhZGFycmZyLmJsYWNrZHJhZ29uLnR2Ly83ODc4":"deployment:radarr:radarrfr"}'
+    field.cattle.io/publicEndpoints: '[{"addresses":["195.201.196.53"],"port":443,"protocol":"HTTPS","serviceName":"radarr:ingress-ba21fc9b438668410df4db666d50fccd","ingressName":"radarr:radarrfr","hostname":"radarrfr.blackdragon.tv","allNodes":true}]'
+  creationTimestamp: null
+  generation: 1
+  labels:
+    cattle.io/creator: norman
+  name: radarrfr
+  selfLink: /apis/extensions/v1beta1/namespaces/radarr/ingresses/radarrfr
+spec:
+  rules:
+  - host: radarrfr.blackdragon.tv
+    http:
+      paths:
+      - backend:
+          serviceName: ingress-ba21fc9b438668410df4db666d50fccd
+          servicePort: 7878
+  tls:
+  - hosts:
+    - radarrfr.blackdragon.tv
+status:
+  loadBalancer: {}

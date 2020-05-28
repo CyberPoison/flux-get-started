@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    certmanager.k8s.io/cluster-issuer: letsencrypt
+    field.cattle.io/creatorId: user-gj778
+    field.cattle.io/ingressState: '{"c3BlZWR0ZXN0L3NwZWVkdGVzdC9zcGVlZHRlc3QuYmxhY2tkcmFnb24udHYvLzgw":"deployment:speedtest:speedtest"}'
+    field.cattle.io/publicEndpoints: '[{"addresses":["195.201.196.53"],"port":443,"protocol":"HTTPS","serviceName":"speedtest:ingress-32b1efb853355a00bee088ec6bcd972b","ingressName":"speedtest:speedtest","hostname":"speedtest.blackdragon.tv","allNodes":true}]'
+    kubernetes.io/tls-acme: '"true"'
+  creationTimestamp: null
+  generation: 1
+  labels:
+    cattle.io/creator: norman
+  name: speedtest
+  selfLink: /apis/extensions/v1beta1/namespaces/speedtest/ingresses/speedtest
+spec:
+  rules:
+  - host: speedtest.blackdragon.tv
+    http:
+      paths:
+      - backend:
+          serviceName: ingress-32b1efb853355a00bee088ec6bcd972b
+          servicePort: 80
+  tls:
+  - hosts:
+    - speedtest.blackdragon.tv
+    secretName: speedtest.blackdragon.tv-crt
+status:
+  loadBalancer: {}

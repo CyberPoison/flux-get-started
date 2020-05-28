@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/creatorId: user-gj778
+    field.cattle.io/ingressState: '{"dGF1dHVsbGkvdGF1dHVsbGkvdGF1dHVsbGkuYmxhY2tkcmFnb24udHYvLzgxODE=":"deployment:tautulli:tautulli"}'
+    field.cattle.io/publicEndpoints: '[{"addresses":["195.201.196.53"],"port":443,"protocol":"HTTPS","serviceName":"tautulli:ingress-a562345d3a152a8d0ba1466b96914643","ingressName":"tautulli:tautulli","hostname":"tautulli.blackdragon.tv","allNodes":true}]'
+  creationTimestamp: null
+  generation: 1
+  labels:
+    cattle.io/creator: norman
+  name: tautulli
+  selfLink: /apis/extensions/v1beta1/namespaces/tautulli/ingresses/tautulli
+spec:
+  rules:
+  - host: tautulli.blackdragon.tv
+    http:
+      paths:
+      - backend:
+          serviceName: ingress-a562345d3a152a8d0ba1466b96914643
+          servicePort: 8181
+  tls:
+  - hosts:
+    - tautulli.blackdragon.tv
+status:
+  loadBalancer: {}
